@@ -16,6 +16,10 @@
 
 
 
+/// Here I create a CLASS called APP which instantiates the DECK and 2 PLAYERS and DRAWS cards for the Players.
+
+
+
 
 
 
@@ -23,7 +27,10 @@ package week06;
 
 public class App {
 	
+	private static String name;
+
 	public static void main(String[]  args) {
+		
 	
 		
 		//Add code here to instantiate a Deck
@@ -31,6 +38,8 @@ public class App {
 		Deck deck = new Deck();
 		System.out.println("New Deck has been created!");
 		System.out.println("--------------------------------");
+		Card card = new Card(0, name);
+		
 		
 	
 		
@@ -65,13 +74,13 @@ public class App {
 				player2.draw(deck);
 			}
 		}
-		System.out.println("\n" + player1.getName() + " has these cards");
-		System.out.println("\n" + player2.getName() + " has these cards");
+		System.out.println( "\n --- War has been Declared ----");
+		System.out.println("----------------------------------");
 				  
 				//// Start the round and play the game
 				int round = 1;
 				
-				// Players play the cards and the score is incremented
+				// Players play the cards and the score is incremented we use a TRADITIONAL FOR LOOP here to iterate 26 times and CALL THE FLIP METHOD
 				
 				for (int i = 0; i < 26; i++) {
 					System.out.println("\n --- Round " + round + " of 26 ----");
@@ -79,22 +88,34 @@ public class App {
 					Card cardOne = player1.flipCard();
 					Card cardTwo = player2.flipCard();
 					
-					System.out.println(player1.getName() + " plays: ");
+					System.out.print(player1.getName() + " plays: ");
 					cardOne.describe();
-					System.out.println(player2.getName() + " plays: ");
+					System.out.print(player2.getName() + " plays: ");
 					cardTwo.describe();
 					
-					if (cardOne.getValue1() > cardTwo.getValue1()) {
+					if (cardOne.getValue() > cardTwo.getValue()) {
 						player1.incrementScore();
-						System.out.println("\n" + player1.getName() + "Wins this Round");
-					}else if (cardTwo.getValue1() > cardOne.getValue1()) {
+						System.out.println("\n" + player1.getName() + " Wins this Round");
+					}else if (cardTwo.getValue() > cardOne.getValue()) {
 						player2.incrementScore();
-						System.out.println("\n" + player2.getName() + "Wins this Round");
+						System.out.println("\n" + player2.getName() + " Wins this Round");
 					}else {
 						System.out.println("It's a Draw");
 						
 					}
-					
+				System.out.println(player1.getName() + "'s Score is " + player1.getScore() );
+				System.out.println(player2.getName() + "'s Score is " + player2.getScore() );
+				}
+				System.out.println();
+				System.out.println("Final Scores");
+				System.out.println(player1.getName() + "'s Final Score is " + player1.getScore() );
+				System.out.println(player2.getName() + "'s Final Score is " + player2.getScore() );
+				if (player1.getScore() > player2.getScore()) {
+					System.out.println(player1.getName() + " Wins the Game");
+				}else if(player1.getScore() < player2.getScore()) {
+					System.out.println(player2.getName() + " Wins the Game");
+				}else {
+					System.out.println("Nobody Wins the Game of War");
 				}
 				
 	}

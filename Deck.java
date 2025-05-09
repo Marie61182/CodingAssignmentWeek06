@@ -7,25 +7,30 @@ package week06;
    // DRAW
    // in the CONSTRUCTOR when a new Deck is instantiated the Cards field should be populated with the standard 52 cards
 
+
+//// This is the CLASS called DECK I created, this basically creates a list of the cards suits and values
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//// this is the FIELD "CARD" which is a List of Card
 
 public class Deck {
 List<Card> cards = new ArrayList<Card>();
 String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
 	
-	Deck() {
+	 public Deck() {
 		
 		
-		//// at 1st attempt I copied and pasted this from week 5 lab but then I figured I needed to change from String to Int. and change "two" to "2"
-		int[] numbers = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+		////
+		String[] numbers = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
 		
 		for (String suit : suits) {
 			int count = 2;
-			for (Integer numberName : numbers) {
-				cards.add(new Card(numberName, suit));
+			for (String numberName : numbers) {
+				String name = numberName + " of " + suit;
+				cards.add(new Card(count, suit));
 				count++;
 				
 			}
@@ -47,6 +52,8 @@ String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
 			card.describe();
 		}
 	}
+	
+	/// here we CALL COLLECTIONS.SHUFFLE METHOD, this is a SHUFFLE Method in the COLLCTIONS CLASS, in Java Util, these are prebuilt tools available to us
 	
 	public void shuffle() {
 		Collections.shuffle(cards);
